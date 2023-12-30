@@ -47,7 +47,7 @@ startGame = () => {
 
 moveSnake = () => {
   
-  squares = document.querySelectorAll(".grid1 div");
+if(checkHit())  { squares = document.querySelectorAll(".grid1 div");
   console.log(squares[currentSnake[0]+direction]);
   let item = currentSnake.pop();
   currentSnake.unshift((((currentSnake[0] + direction)>=width**2)||((currentSnake[0]+direction)<0))?currentSnake[0]:currentSnake[0]+direction);
@@ -57,11 +57,10 @@ moveSnake = () => {
     squares[item].classList.remove("snake");
   } else {
     currentSnake.push(item);
-    clearInterval(intervalid);
     interval = interval * speed;
     intervalid = setInterval(moveSnake, interval);
   }
-  console.log("RUN..." + currentSnake);
+  console.log("RUN..." + currentSnake);}
 };
 function control(e) {
   if( (e.keyCode === 39) &&(direction!=-1)) {
@@ -100,7 +99,7 @@ changeDirection = (dir) => {
 //selfHit=()=>{
 //if(squares[currentSnake[0]+direction].classList.contains('snake'));
 //}
-checkHit = (squares) => {
+checkHit = () => {
   if (
        (currentSnake[0] + width >= width * width && direction === width) ||
     (currentSnake[0] % width === width - 1 && direction === 1) ||
